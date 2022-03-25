@@ -15,11 +15,15 @@ subprojects {
     ext {
         lombokVersion = '1.18.4'
         mapstructVersion = '1.2.0.Final'
+        flinkVersion = '1.14.4'
     }
 
 
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    compileJava.options.encoding = 'UTF-8'
+    group 'dev.warriorg.bigdata'
+    version "0.0.1"
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 
 
 
@@ -32,13 +36,17 @@ subprojects {
         implementation 'org.mapstruct:mapstruct:1.4.2.Final'
         annotationProcessor "org.mapstruct:mapstruct-processor:$mapstructVersion"
 
+
+        implementation "org.apache.flink:flink-java"
+
         testImplementation 'org.junit.jupiter:junit-jupiter'
         testImplementation "org.junit.jupiter:junit-jupiter-api"
         testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
 
 
         constraints {
-
+            implementation "org.apache.flink:flink-java:$flinkVersion"
+            implementation "org.apache.flink:flink-streaming-java_2.12:$flinkVersion"
         }
     }
 
