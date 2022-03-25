@@ -1,0 +1,3 @@
+rootProject.name = 'flink-sample'
+
+include 'word-count'

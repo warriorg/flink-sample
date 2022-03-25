@@ -1,0 +1,56 @@
+
+plugins {
+}
+
+subprojects {
+    apply plugin: 'idea'
+    apply plugin: 'java-library'
+
+    repositories {
+        mavenLocal()
+        maven { url "https://maven.aliyun.com/nexus/content/groups/public" }
+        mavenCentral()
+    }
+
+    ext {
+        lombokVersion = '1.18.4'
+        mapstructVersion = '1.2.0.Final'
+    }
+
+
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+
+
+
+    dependencies {
+        api "com.google.guava:guava:28.0-jre"
+
+        implementation "org.projectlombok:lombok:$lombokVersion"
+        annotationProcessor "org.projectlombok:lombok:1.18.20"
+
+        implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+        annotationProcessor "org.mapstruct:mapstruct-processor:$mapstructVersion"
+
+        testImplementation 'org.junit.jupiter:junit-jupiter'
+        testImplementation "org.junit.jupiter:junit-jupiter-api"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+
+
+        constraints {
+
+        }
+    }
+
+    clean {
+        delete "bin", "out", ".gradle", ".idea", ".settings", ".classpath", ".project", ".metals"
+    }
+}
+
+tasks.withType(Wrapper) {
+    enabled = false
+}
+
+
+
+
